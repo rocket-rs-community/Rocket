@@ -25,8 +25,11 @@
 //!
 //! ```toml
 //! [dependencies]
-//! rocket = "0.6.0-dev"
+//! rocket = { package = "rocket_community", version = "0.6.0-rc2" }
 //! ```
+//!
+//! (Note that this is a community fork of Rocket. The `package = "rocket_community"`
+//! configuration enables the documentation and example code to work as expected.)
 //!
 //! <small>Note that development versions, tagged with `-dev`, are not published
 //! and need to be specified as [git dependencies].</small>
