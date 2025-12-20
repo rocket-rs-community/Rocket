@@ -30,7 +30,7 @@ code you contribute must be:
 
   * **Commented:** Complex or subtle functionality must be properly commented.
   * **Documented:** Public items must have doc comments with examples.
-  * **Styled:** Your code must folow the [Code Style Conventions].
+  * **Styled:** ~~Your code must follow the [Code Style Conventions].~~ Your code must be formatted with the cargo fmt tool. (Community Fork)
   * **Simple:** Your code should accomplish its task as simply and
     idiomatically as possible.
   * **Tested:** You must write (and pass) convincing [tests](#testing) for all
@@ -68,7 +68,7 @@ If you spot an open issue that you'd like to resolve:
   4. **Wait for a review, iterate, and polish.**
 
      If a review doesn't come in a few days, feel free to ping a maintainer.
-     Once somene reviews your PR, integrate their feedback. If the PR solves the
+     Once someone reviews your PR, integrate their feedback. If the PR solves the
      issue (which it should because you have passing tests) and fits the project
      (which it should since you sought feedback _before_ submitting), it will be
      _conditionally_ approved pending final polish: documentation (rustdocs,
@@ -282,281 +282,19 @@ override this behavior, use `mk-docs.sh -d`.
 ## Code Style Conventions
 [Code Style Conventions]: #code-style-conventions
 
-We _do not_ use `rustfmt` or `cargo fmt` due to bugs and missing functionality.
-Instead, we ask that you follow the [Rust Style Guide] with the following
-changes:
-
-**Always separate items with one blank line.**
-
-<table>
-<thead>
- <tr>
-  <th width="350px"><b>✅ Yes</b></th>
-  <th width="350px"><b>No 🚫</b></th>
- </tr>
-</thead>
-<tbody>
- <tr>
-    <td>
-
-```rust
-fn foo() {
-    // ..
-}
-
-fn bar() {
-    // ..
-}
-```
-
-</td>
-<td>
-
-```rust
-fn foo() {
-    // ..
-}
-fn bar() {
-    // ..
-}
-```
-
-</td>
-</tr>
-</tbody>
-</table>
-
-**Prefer a where-clause over block-indented generics.**
-
-<table>
-<thead>
- <tr>
-  <th width="350px"><b>✅ Yes</b></th>
-  <th width="350px"><b>No 🚫</b></th>
- </tr>
-</thead>
-<tbody>
- <tr>
-    <td>
-
-```rust
-fn foo<T, U>(x: Vec<T>, y: Vec<U>)
-    where T: Display, U: Debug
-{
-    // ..
-}
-```
-
-</td>
-<td>
-
-```rust
-fn foo<
-    T: Display,
-    U: Debug,
->(x: Vec<T>, y: Vec<U>) {
-    // ..
-}
-```
-
-</td>
-</tr>
-</tbody>
-</table>
-
-**For "short" where-clauses, follow Rust guidelines. For "long" where-clauses,
-block-indent `where`, place the first bound on the same line as `where`, and
-block-align the remaining bounds.**
-
-<table>
-<thead>
- <tr>
-  <th width="350px"><b>✅ Yes</b></th>
-  <th width="350px"><b>No 🚫</b></th>
- </tr>
-</thead>
-<tbody>
- <tr>
-    <td>
-
-```rust
-fn foo<T, F, Item, G>(v: Foo<T, F, Item>) -> G
-    where T: for<'x> SomeTrait<'x>
-          F: Fn(Item) -> G,
-          Item: Display + Debug,
-          G: Error,
-{
-    // ..
-}
-```
-
-</td>
-<td>
-
-```rust
-fn foo<T, F, Item, G>(v: Foo<T, F, Item>) -> G
-    where
-        T: for<'x> SomeTrait<'x>
-        F: Fn(Item) -> G,
-        Item: Display + Debug,
-        G: Error,
-{
-    // ..
-}
-```
-
-</td>
-</tr>
-</tbody>
-</table>
-
-**Do not use multi-line imports. Use multiple lines grouped by import kind if
-possible.**
-
-<table>
-<thead>
- <tr>
-  <th width="350px"><b>✅ Yes</b></th>
-  <th width="350px"><b>No 🚫</b></th>
- </tr>
-</thead>
-<tbody>
- <tr>
-    <td>
-
-```rust
-use foo::{Long, List, Of, Type, Imports};
-use foo::{some_macro, imports};
-```
-
-</td>
-<td>
-
-```rust
-use foo::{
-    Long, List, Of, Type, Imports,
-    some_macro, imports,
-};
-```
-
-</td>
-</tr>
-</tbody>
-</table>
-
-**Order imports in order of decreasing "distance" to the current module: `std`,
-`core`, and `alloc`, external crates, then current crate. Prefer using `crate`
-relative imports to `super`. Separate each category with one blank line.**
-
-<table>
-<thead>
- <tr>
-  <th width="350px"><b>✅ Yes</b></th>
-  <th width="350px"><b>No 🚫</b></th>
- </tr>
-</thead>
-<tbody>
- <tr>
-    <td>
-
-```rust
-use std::{foo, bar};
-use alloc::{bar, baz};
-
-use either::Either;
-use futures::{SomeItem, OtherItem};
-
-use crate::{item1, item2};
-use crate::module::item3;
-use crate::module2::item4;
-```
-
-</td>
-<td>
-
-```rust
-use crate::{item1, item2};
-use std::{foo, bar};
-use either::Either;
-use alloc::{bar, baz};
-use futures::{SomeItem, OtherItem};
-
-use super::{item3, item4};
-use super::item4;
-```
-
-</td>
-</tr>
-</tbody>
-</table>
-
-## Commit Message Guidelines
-[Commit Message Guidelines]: #commit-message-guidelines
-
-Git commit messages should start with a single-line _header_ of at most 50
-characters followed by a body with any number of descriptive paragraphs, with
-lines not to exceed 72 characters, and a footer.
-
-The **header** must be an imperative statement that precisely describes the
-primary change made by the commit. The goal is to give the reader a good
-understanding of what the commit does via only the header. It should not require
-context to understand. It should not include references to git commits or
-issues. Avoid using Markdown in the header if possible.
-
-Typically, the first word in the header will be one of the following:
-
-  * **Fix** - to fix a functional or doc bug
-    - Example: `Fix 'TcpListener': allow 'udp://' prefix.`
-  * **Improve** - for minor feature or doc improvements
-    - Example: `Improve 'FromParam' derive error messages.`
-  * **Introduce** - for major feature introductions
-    - Example: `Introduce WebSocket support.`
-  * **Add**, **Remove** - for changes
-    - Example: `Add 'Foo::new()' constructor.`
-    - Example: `Remove 'Foo::new()'; add 'Foo::build()'.`
-  * **Update** - for crate updates
-    - Example: `Update 'base64' to 0.12.`
-  * **Impl** or **Implement** - for trait implementations
-    - Example: `Implement 'FromForm' for 'ThisNewType'.`
-
-Note how generic words like "change" are avoided, and how the headers are
-specific about the changes they made. You need not limit yourself to this
-vocabulary. When in doubt, consult the `git log` for examples.
-
-| **✅ Yes**                                       | **No 🚫**                                  |
-|--------------------------------------------------|--------------------------------------------|
-| Fix 'FromForm' derive docs typo: 'yis' -> 'yes'. | ~~Change word in docs~~                    |
-| Default 'MsgPack<T>' to named variant.           | ~~Change default to more likely variant.~~ |
-| Fix 'Compact' advice in 'MsgPack' docs.          | ~~Update docs to make sense~~              |
-| Improve 'Sentinel' docs: explain 'Sentry'.       | ~~Add missing doc details.~~               |
-| Fix CI: pin macOS CI 'mysql-client' to '8.4'.    | ~~Fix CI~~                                 |
-| Fix link to 'rocket::build()' in config guide.   | ~~Fix wrong URL in guide (configuration~~) |
-
-The **body** should describe what the commit does. For example, if the commit
-introduces a new feature it should describe what the feature enables and how it
-enables it. A body may be unnecessary if the header sufficiently describes the
-commit. Avoid referencing issues in the body as well: we'll do that in the
-footer. If you reference a commit, reference it by shorthash only. Feel free to
-use markdown including lists and code.
-
-Finally, the **footer** is where references to issues should be made. See the
-GitHub's [linked issues] documentation.
-
-[linked issues]: https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue
-[Rust Style Guide]: https://doc.rust-lang.org/nightly/style-guide/
-[issue]: https://github.com/rwf2/Rocket/issues
-[pull request]: https://github.com/rwf2/Rocket/pulls
-[test.sh]: scripts/test.sh
-[mk-docs.sh]: scripts/mk-docs.sh
-[`trybuild`]: https://docs.rs/trybuild
-[sponsor the project]: https://github.com/sponsors/rwf2
-[docs/guide]: docs/guide
+Please use `cargo fmt` to format all contributions.
 
 ## Licensing
 
 Unless you explicitly state otherwise, any contribution intentionally submitted
 for inclusion in Rocket by you shall be dual licensed under the MIT License and
 Apache License, Version 2.0, without any additional terms or conditions.
+
+
+> [!IMPORTANT]
+> This is a community fork of the Rocket.rs project, contributions to this fork
+> may be incorporated into the original project in line with the permissions
+> conveyed in the dual license.
 
 The Rocket website docs are licensed under [separate terms](docs/LICENSE). Any
 contribution intentionally submitted for inclusion in the Rocket website docs by

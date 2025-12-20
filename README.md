@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/rocket-rs-community/Rocket/workflows/CI/badge.svg)](https://github.com/rocket-rs-community/Rocket/actions)
 [![Rocket Homepage](https://img.shields.io/badge/web-rocket.rs-red.svg?style=flat&label=https&colorB=d33847)](https://github.com/rocket-rs-community/Rocket)
-[![Current Crates.io Version](https://img.shields.io/crates/v/rocket.svg)](https://crates.io/crates/rocket_community)
+[![Current Crates.io Version](https://img.shields.io/crates/v/rocket_community.svg)](https://crates.io/crates/rocket_community)
 [![Matrix: #rocket:mozilla.org](https://img.shields.io/badge/style-%23rocket:mozilla.org-blue.svg?style=flat&label=[m])](https://chat.mozilla.org/#/room/#rocket:mozilla.org)
 
 
