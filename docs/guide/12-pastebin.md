@@ -473,7 +473,6 @@ We note the following Rocket APIs being used in our implementation:
   * The [`uri!`] macro to create type-safe, URL-safe URIs.
 
 [`Data::open()`]: @api/master/rocket/data/struct.Data.html#method.open
-[`Data`]: @api/master/rocket/data/struct.Data.html
 [`DataStream`]: @api/master/rocket/data/enum.DataStream.html
 [`DataStream::into_file()`]: @api/master/rocket/data/enum.DataStream.html#method.into_file
 [`uri!`]: @api/master/rocket/macro.uri.html

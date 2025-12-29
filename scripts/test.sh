@@ -50,8 +50,8 @@ function check_style() {
     exit 1
   fi
 
-  # Ensure there's no trailing whitespace.
-  local matches=$(git grep -PIn "\s+$" "${PROJECT_ROOT}" | grep -v -F '.stderr:')
+  # Ensure there's no trailing whitespace (excluding the .github directory).
+  local matches=$(git grep -PIn "\s+$" -- "./" ':!.github' | grep -v -F '.stderr:')
   if ! [ -z "${matches}" ]; then
     echo "Trailing whitespace was found in the following:"
     echo "${matches}"

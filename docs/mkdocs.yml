@@ -1,0 +1,34 @@
+site_name: Rocket-rs Community Fork User Guide
+site_url: https://mydomain.org/mysite
+docs_dir: guide
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.instant.prefetch
+    - toc.integrate
+    - toc.follow
+
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
+nav:
+  - Index: index.md
+  - Introductions: 00-introduction.md
+  - Upgrading: 01-upgrading.md
+  - Quickstart: 02-quickstart.md
+  - Getting Started: 03-getting-started.md
+  - Overview: 04-overview.md
+  - Requests: 05-requests.md
+  - Responses: 06-responses.md
+  - State: 07-state.md
+  - Fairings: 08-fairings.md
+  - Testing: 09-testing.md
+  - Configuration: 10-configuration.md
+  - Deploying: 11-deploying.md
+  - Pastebin: 12-pastebin.md
+  - Conclusion: 13-conclusion.md
+  - FAQ: 14-faq.md
