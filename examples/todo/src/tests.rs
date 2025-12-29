@@ -1,9 +1,9 @@
 use super::task::Task;
 
-use rand::{Rng, thread_rng, distributions::Alphanumeric};
+use rand::{self, distr::Alphanumeric, Rng};
 
+use rocket::http::{ContentType, Status};
 use rocket::local::asynchronous::Client;
-use rocket::http::{Status, ContentType};
 
 // We use a lock to synchronize between tests so DB operations don't collide.
 // For now. In the future, we'll have a nice way to run each test in a DB
@@ -42,7 +42,8 @@ fn test_insertion_deletion() {
         let init_tasks = Task::all(&conn).await.unwrap();
 
         // Issue a request to insert a new task.
-        client.post("/todo")
+        client
+            .post("/todo")
             .header(ContentType::Form)
             .body("description=My+first+task")
             .dispatch()
@@ -73,7 +74,8 @@ fn test_insertion_deletion() {
 fn test_toggle() {
     run_test!(|client, conn| {
         // Issue a request to insert a new task; ensure it's not yet completed.
-        client.post("/todo")
+        client
+            .post("/todo")
             .header(ContentType::Form)
             .body("description=test_for_completion")
             .dispatch()
@@ -83,11 +85,17 @@ fn test_toggle() {
         assert!(!task.completed);
 
         // Issue a request to toggle the task; ensure it is completed.
-        client.put(format!("/todo/{}", task.id.unwrap())).dispatch().await;
+        client
+            .put(format!("/todo/{}", task.id.unwrap()))
+            .dispatch()
+            .await;
         assert!(Task::all(&conn).await.unwrap()[0].completed);
 
         // Issue a request to toggle the task; ensure it's not completed again.
-        client.put(format!("/todo/{}", task.id.unwrap())).dispatch().await;
+        client
+            .put(format!("/todo/{}", task.id.unwrap()))
+            .dispatch()
+            .await;
         assert!(!Task::all(&conn).await.unwrap()[0].completed);
     })
 }
@@ -103,13 +111,14 @@ fn test_many_insertions() {
 
         for i in 0..ITER {
             // Issue a request to insert a new task with a random description.
-            let desc: String = thread_rng()
+            let desc: String = rand::rng()
                 .sample_iter(&Alphanumeric)
                 .take(12)
                 .map(char::from)
                 .collect();
 
-            client.post("/todo")
+            client
+                .post("/todo")
                 .header(ContentType::Form)
                 .body(format!("description={}", desc))
                 .dispatch()
@@ -133,7 +142,8 @@ fn test_many_insertions() {
 fn test_bad_form_submissions() {
     run_test!(|client, _conn| {
         // Submit an empty form. We should get a 422 but no flash error.
-        let res = client.post("/todo")
+        let res = client
+            .post("/todo")
             .header(ContentType::Form)
             .dispatch()
             .await;
@@ -143,7 +153,8 @@ fn test_bad_form_submissions() {
 
         // Submit a form with an empty description. We look for 'error' in the
         // cookies which corresponds to flash message being set as an error.
-        let res = client.post("/todo")
+        let res = client
+            .post("/todo")
             .header(ContentType::Form)
             .body("description=")
             .dispatch()
@@ -155,15 +166,28 @@ fn test_bad_form_submissions() {
 
         // The flash cookie should still be present and the error message should
         // be rendered the index.
-        let body = client.get("/").dispatch().await.into_string().await.unwrap();
+        let body = client
+            .get("/")
+            .dispatch()
+            .await
+            .into_string()
+            .await
+            .unwrap();
         assert!(body.contains("Description cannot be empty."));
 
         // Check that the flash is cleared upon another visit to the index.
-        let body = client.get("/").dispatch().await.into_string().await.unwrap();
+        let body = client
+            .get("/")
+            .dispatch()
+            .await
+            .into_string()
+            .await
+            .unwrap();
         assert!(!body.contains("Description cannot be empty."));
 
         // Submit a form without a description. Expect a 422 but no flash error.
-        let res = client.post("/todo")
+        let res = client
+            .post("/todo")
             .header(ContentType::Form)
             .body("evil=smile")
             .dispatch()
