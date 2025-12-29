@@ -286,7 +286,6 @@ numerous. They include:
   * The inability to know the state a route accesses by looking at its
     signature.
 
-[managed state]: ../state/#managed-state
 {{ endfaq() }}
 
 {{ faq("file-uploads") }}
@@ -304,7 +303,6 @@ submissions into any type that implements [`FromForm`]. This includes types like
 
 [multipart]: https://datatracker.ietf.org/doc/html/rfc7578
 [multipart forms]: ../requests/#multipart
-[`DataField`]: @api/master/rocket/form/struct.DataField.html
 [`TempFile`]: @api/master/rocket/fs/enum.TempFile.html
 [`DataField`]: @api/master/rocket/data/struct.Data.html
 [`Form`]: @api/master/rocket/form/struct.Form.html
@@ -341,7 +339,6 @@ out-of-the-box, and you can implement your own, too. See the following:
 [`FromParam`]: @api/master/rocket/request/trait.FromParam.html
 [`FromSegments`]: @api/master/rocket/request/trait.FromSegments.html
 [`FromData`]: @api/master/rocket/data/trait.FromData.html
-[`FromForm`]: @api/master/rocket/form/trait.FromForm.html
 [`FromRequest`]: @api/master/rocket/request/trait.FromRequest.html
 {{ endfaq() }}
 

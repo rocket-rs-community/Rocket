@@ -1180,8 +1180,6 @@ struct Password<'r> {
 
 [`form::validate`]: @api/master/rocket/form/validate/index.html
 [`form::validate::range`]: @api/master/rocket/form/validate/fn.range.html
-[`form::Result`]: @api/master/rocket/form/type.Result.html
-[`Errors<'_>`]: @api/master/rocket/form/error/struct.Errors.html
 
 In reality, the expression after `validate =` can be _any_ expression as long as
 it evaluates to a value of type `Result<(), Errors<'_>>` (aliased by
