@@ -9,4 +9,4 @@ publish = false
 rocket = { package = "rocket-community", path = "../../core/lib", features = ["json"] }
 
 [dev-dependencies]
-rand = "0.8"
+rand = "0.9"
