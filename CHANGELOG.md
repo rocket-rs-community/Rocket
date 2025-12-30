@@ -1,3 +1,101 @@
+# Version 0.6.0 (Unpublished)
+
+This release contains the following crate updates:
+
+  - `rocket` `0.6.0`
+  - `rocket_db_pools` `0.3.0`
+  - `rocket_dyn_templates` `0.3.0`
+  - `rocket_ws` `0.1.2`
+
+> [!IMPORTANT]
+>
+> This is the first 'release' from the community fork.
+>
+> See the [https://github.com/rocket-rs-community/Rocket] for installation instructions.
+>
+> The fork is intended to keep on top of security and dependency updates and make
+> new features available quicker.
+>
+> If the v0.6.0 release is usable it will form the basis for a v1.0.0 release which
+> will stabilize the interfaces - at which point the project fork will be renamed.
+
+
+##  [`rocket`](https://api.rocket.rs/latest/rocket/) `0.6.0`
+
+  * Codegen now generates deterministic names for 'uri' macros. [PR 2797]
+
+  * Transition to `tracing` based logging. [Commit 926e06e]
+
+  * (**breaking**) Improves 'Error' type: make 'ErrorKind' accessible. [Commit 4a00c1f]
+
+  * (**breaking**) Implements new FileServer API. [Doc link - TBD]
+
+  * Added macro to derive `FromParam` for Enum. [Doc link - TBD]
+
+  * Allows responses to be msgpack objects. [Doc link - TBD]
+
+  * Add support for custom HTTP methods. [Testbench http_extensions]
+
+  * Switches to use derive equality, ordering traits for http::Status. [Issue 2844]
+
+  * Add fairing retrieval methods to 'Rocket'. [Commit d332339]
+
+  * Implements Impl `TryFrom<&str>` for 'Method' and `From<Infallible>` for 'ParseMethodError'. [Commit ef1cfa0]
+
+  * Support routes that match any method. [Doc link - TBD]
+
+  * Strip body and content-length on 204 and body on 304. [Issue 2821]
+
+  * Add 'Request::version()' to retrieve HTTP version. [Commit 2d4dc1c]
+
+  * Expose the SNI when possible for TLS connections. [Doc link - TBD]
+
+  * Fixed bug which stopped rocket from working with unix sockets if the reuse setting was not set. [Issue 2976]
+
+  * Update pastebin example to avoid use of `gen` keyword. [Commit 5617563]
+
+
+## [`rocket_db_pools`](https://api.rocket.rs/v0.5/rocket_db_pools/) `0.3.0`
+
+  * Allow sync drops for 'sync_db_pools' connections. [Commit 327b1ad]
+
+  * Defer sqlx pool connect errors on startup. [Commit 1435f65]
+
+
+## [`rocket_dyn_templates`](https://api.rocket.rs/v0.5/rocket_dyn_templates/) `0.3.0`
+
+  * Adds MiniJina for templating example
+
+
+## [`rocket_ws`](https://api.rocket.rs/v0.5/rocket_ws/) `0.1.2`
+
+  * Detects and handles MessageStream WebSocket closure.
+
+
+## General Changes
+
+  * Dependencies have been updated where required.
+
+  * Updated sqlx to mitigate RUSTSEC-2024-0363.
+
+  * Minimum rust version is 1.82.0
+
+
+
+[PR 2797]: https://github.com/rwf2/Rocket/pull/2797
+[Commit 926e06e]: https://github.com/rocket-rs-community/Rocket/commit/926e06ef3c52d32ec816849cb9a8abebd888fcfe
+[Commit 4a00c1f]: https://github.com/rocket-rs-community/Rocket/commit/4a00c1fe7793c0a1ede33882540cd45be3804ba4
+[Testbench http_extensions]: https://github.com/rocket-rs-community/Rocket/blob/master/testbench/src/servers/http_extensions.rs
+[Commit 327b1ad]: https://github.com/rocket-rs-community/Rocket/commit/327b1ad064dfda2c75f3145a72e9241bbb2ff81d
+[Issue 2844]: https://github.com/rwf2/Rocket/issues/2844
+[Commit d332339]: https://github.com/rocket-rs-community/Rocket/commit/d3323391abb9923f07082006c49aca7a2e20b757
+[Commit ef1cfa0]: https://github.com/rocket-rs-community/Rocket/commit/ef1cfa0965a8a1ed67a68c35897b6dbb020a1224
+[Issue 2821]: https://github.com/rwf2/Rocket/issues/2821
+[Commit 2d4dc1c]: https://github.com/rocket-rs-community/Rocket/commit/2d4dc1c0ed37ef6f79b9e8534f358f2cae4b4cf4
+[Commit 1435f65]: https://github.com/rocket-rs-community/Rocket/commit/1435f6574fbcbe578720b45f618c6c4b74294acd
+[Issue 2976]: https://github.com/rwf2/Rocket/issues/
+[Commit 5617563]: https://github.com/rocket-rs-community/Rocket/commit/56175633e66ec474c8fa4857d2672a4fdb98a7a8
+
 # Version 0.5.1 (May 22, 2024)
 
 This release contains the following crate updates:
