@@ -1,10 +1,10 @@
-pub mod ignite_failure;
 pub mod bind;
 pub mod http_extensions;
+pub mod ignite_failure;
 pub mod infinite_stream;
-pub mod tls_resolver;
 pub mod mtls;
-pub mod sni_resolver;
-pub mod tracing;
-pub mod tls;
 pub mod no_content;
+pub mod sni_resolver;
+pub mod tls;
+pub mod tls_resolver;
+pub mod tracing;

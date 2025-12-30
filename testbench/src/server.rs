@@ -1,19 +1,19 @@
 use std::future::Future;
-use std::net::{Ipv4Addr, SocketAddr};
-use std::time::Duration;
-use std::sync::Once;
-use std::process::Stdio;
 use std::io::Read;
+use std::net::{Ipv4Addr, SocketAddr};
+use std::process::Stdio;
+use std::sync::Once;
+use std::time::Duration;
 
 use rocket::fairing::AdHoc;
 use rocket::listener::{Bind, DefaultListener};
 use rocket::serde::{Deserialize, DeserializeOwned, Serialize};
-use rocket::{Build, Ignite, Rocket};
 use rocket::trace::Trace;
+use rocket::{Build, Ignite, Rocket};
 
 use ipc_channel::ipc::{IpcOneShotServer, IpcReceiver, IpcSender};
 
-use crate::{Result, Error};
+use crate::{Error, Result};
 
 #[derive(Debug)]
 pub struct Server {
@@ -56,7 +56,8 @@ fn read<T: Read>(io: Option<T>) -> Result<String> {
 
 impl Server {
     pub fn spawn<T>(ctxt: T, f: fn((Token, T)) -> Launched) -> Result<Server>
-        where T: Serialize + DeserializeOwned
+    where
+        T: Serialize + DeserializeOwned,
     {
         static INIT: Once = Once::new();
         INIT.call_once(procspawn::init);
@@ -70,12 +71,13 @@ impl Server {
 
         let (rx, _) = ipc.accept().unwrap();
         match rx.recv()? {
-            Message::Liftoff(tls, port) => {
-                Ok(Server { proc, tls, port, _rx: rx })
-            },
-            Message::Failure => {
-                Err(Error::Liftoff(read(proc.stdout())?, read(proc.stderr())?))
-            }
+            Message::Liftoff(tls, port) => Ok(Server {
+                proc,
+                tls,
+                port,
+                _rx: rx,
+            }),
+            Message::Failure => Err(Error::Liftoff(read(proc.stdout())?, read(proc.stderr())?)),
         }
     }
 
@@ -114,17 +116,20 @@ impl Server {
 
 impl Token {
     pub fn with_launch<F, Fut>(self, rocket: Rocket<Build>, launch: F) -> Launched
-        where F: FnOnce(Rocket<Ignite>) -> Fut + Send + Sync + 'static,
-              Fut: Future<Output = Result<Rocket<Ignite>, rocket::Error>> + Send
+    where
+        F: FnOnce(Rocket<Ignite>) -> Fut + Send + Sync + 'static,
+        Fut: Future<Output = Result<Rocket<Ignite>, rocket::Error>> + Send,
     {
         let server = self.0.clone();
-        let rocket = rocket.attach(AdHoc::on_liftoff("Liftoff", move |rocket| Box::pin(async move {
-            let tcp = rocket.endpoints().find_map(|e| e.tcp()).unwrap();
-            let tls = rocket.endpoints().any(|e| e.is_tls());
-            let sender = IpcSender::<Message>::connect(server).unwrap();
-            let _ = sender.send(Message::Liftoff(tls, tcp.port()));
-            let _ = sender.send(Message::Liftoff(tls, tcp.port()));
-        })));
+        let rocket = rocket.attach(AdHoc::on_liftoff("Liftoff", move |rocket| {
+            Box::pin(async move {
+                let tcp = rocket.endpoints().find_map(|e| e.tcp()).unwrap();
+                let tls = rocket.endpoints().any(|e| e.is_tls());
+                let sender = IpcSender::<Message>::connect(server).unwrap();
+                let _ = sender.send(Message::Liftoff(tls, tcp.port()));
+                let _ = sender.send(Message::Liftoff(tls, tcp.port()));
+            })
+        }));
 
         let server = self.0.clone();
         let launch = async move {
@@ -143,9 +148,7 @@ impl Token {
         Launched(())
     }
 
-    pub fn launch_with<B: Bind>(self, rocket: Rocket<Build>) -> Launched
-        where B: Send + Sync + 'static
-    {
+    pub fn launch_with<B: Bind + Send + Sync + 'static>(self, rocket: Rocket<Build>) -> Launched {
         self.with_launch(rocket, |rocket| rocket.launch_with::<B>())
     }
 

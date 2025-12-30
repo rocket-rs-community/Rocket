@@ -1,6 +1,6 @@
 use rocket::{Build, Rocket};
 
-use testbench::{Result, Error};
+use testbench::{Error, Result};
 
 pub static DEFAULT_CONFIG: &str = r#"
     [default]
@@ -40,11 +40,13 @@ impl RocketExt for Rocket<Build> {
     }
 
     fn reconfigure_with_toml(self, toml: &str) -> Self {
-        use rocket::figment::{Figment, providers::{Format, Toml}};
+        use rocket::figment::{
+            providers::{Format, Toml},
+            Figment,
+        };
 
         let toml = toml.replace("{ROCKET}", rocket::fs::relative!("../"));
-        let config = Figment::from(self.figment())
-            .merge(Toml::string(&toml).nested());
+        let config = Figment::from(self.figment()).merge(Toml::string(&toml).nested());
 
         self.reconfigure(config)
     }

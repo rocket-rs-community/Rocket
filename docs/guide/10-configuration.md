@@ -245,20 +245,20 @@ Security). To enable TLS support:
 
   1. Enable the `tls` crate feature in `Cargo.toml`:
 
-   ```toml,ignore
-   [dependencies]
-   rocket = { version = "0.6.0-dev", features = ["tls"] }
-   ```
+     ```toml,ignore
+     [dependencies]
+     rocket = { version = "0.6.0-dev", features = ["tls"] }
+     ```
 
   2. Configure a TLS certificate chain and private key via the `tls.key` and
      `tls.certs` configuration parameters. With the default provider, this can
      be done via `Rocket.toml` as:
 
-   ```toml,ignore
-   [default.tls]
-   key = "path/to/key.pem"     # Path or bytes to DER-encoded ASN.1 PKCS#1/#8 or SEC1 key.
-   certs = "path/to/certs.pem" # Path or bytes to DER-encoded X.509 TLS cert chain.
-   ```
+     ```toml,ignore
+     [default.tls]
+     key = "path/to/key.pem"     # Path or bytes to DER-encoded ASN.1 PKCS#1/#8 or SEC1 key.
+     certs = "path/to/certs.pem" # Path or bytes to DER-encoded X.509 TLS cert chain.
+     ```
 
 The `tls` parameter is expected to be a dictionary that deserializes into a
 [`TlsConfig`] structure:
@@ -297,6 +297,16 @@ ciphers = [
     "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",
 ]
 ```
+
+! warning:
+
+  Rocket does not currently support SNI verification, in most instances this
+  does not present a significant security issue. SNI verification can be
+  achieved by creating a [`Fairing`] which checks the SNI exposed in the
+  [`Request::sni`] method.
+
+[`Fairing`]: ../fairings
+[`Request::sni`]: https://docs.rs/rocket-community/latest/rocket_community/struct.Request.html#method.sni
 
 ### Mutual TLS
 

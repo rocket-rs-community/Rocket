@@ -45,7 +45,7 @@ pub(crate) struct ConnectionMeta {
     pub peer_endpoint: Option<Endpoint>,
     #[cfg_attr(not(feature = "mtls"), allow(dead_code))]
     pub peer_certs: Option<Arc<Certificates<'static>>>,
-    #[cfg_attr(feature = "tls", allow(dead_code))]
+    #[cfg_attr(not(feature = "tls"), allow(dead_code))]
     pub server_name: Option<String>,
 }
 
@@ -314,7 +314,7 @@ impl<'r> Request<'r> {
     /// Ideally, this will match the `Host` header in the request.
     #[cfg(feature = "tls")]
     #[inline(always)]
-    pub fn sni(&mut self) -> Option<&str> {
+    pub fn sni(&self) -> Option<&str> {
         self.connection.server_name.as_deref()
     }
 

@@ -3,9 +3,9 @@
 
 use std::fmt;
 
-use rocket::http::Status;
 use rocket::data::{self, FromData};
-use rocket::http::uri::{Segments, fmt::Path};
+use rocket::http::uri::{fmt::Path, Segments};
+use rocket::http::Status;
 use rocket::request::{self, FromParam, FromRequest, FromSegments};
 
 use crate::prelude::*;
@@ -24,12 +24,16 @@ impl fmt::Display for UseDisplay {
 
 impl FromParam<'_> for UseDisplay {
     type Error = Self;
-    fn from_param(_: &str) -> Result<Self, Self::Error> { Err(Self("param")) }
+    fn from_param(_: &str) -> Result<Self, Self::Error> {
+        Err(Self("param"))
+    }
 }
 
 impl FromParam<'_> for UseDebug {
     type Error = Self;
-    fn from_param(_: &str) -> Result<Self, Self::Error> { Err(Self) }
+    fn from_param(_: &str) -> Result<Self, Self::Error> {
+        Err(Self)
+    }
 }
 
 #[rocket::async_trait]
@@ -66,19 +70,27 @@ impl<'r> FromData<'r> for UseDebug {
 
 impl<'r> FromSegments<'r> for UseDisplay {
     type Error = Self;
-    fn from_segments(_: Segments<'r, Path>) -> Result<Self, Self::Error> { Err(Self("segment")) }
+    fn from_segments(_: Segments<'r, Path>) -> Result<Self, Self::Error> {
+        Err(Self("segment"))
+    }
 }
 
 impl<'r> FromSegments<'r> for UseDebug {
     type Error = Self;
-    fn from_segments(_: Segments<'r, Path>) -> Result<Self, Self::Error> { Err(Self) }
+    fn from_segments(_: Segments<'r, Path>) -> Result<Self, Self::Error> {
+        Err(Self)
+    }
 }
 
 pub fn test_display_guard_err() -> Result<()> {
-    #[get("/<_v>", rank = 1)] fn a(_v: UseDisplay) {}
-    #[get("/<_v..>", rank = 2)] fn b(_v: UseDisplay) {}
-    #[get("/<_..>", rank = 3)] fn d(_v: UseDisplay) {}
-    #[post("/<_..>", data = "<_v>")] fn c(_v: UseDisplay) {}
+    #[get("/<_v>", rank = 1)]
+    fn a(_v: UseDisplay) {}
+    #[get("/<_v..>", rank = 2)]
+    fn b(_v: UseDisplay) {}
+    #[get("/<_..>", rank = 3)]
+    fn d(_v: UseDisplay) {}
+    #[post("/<_..>", data = "<_v>")]
+    fn c(_v: UseDisplay) {}
 
     let mut server = spawn! {
         Rocket::default().mount("/", routes![a, b, c, d])
@@ -99,10 +111,14 @@ pub fn test_display_guard_err() -> Result<()> {
 }
 
 pub fn test_debug_guard_err() -> Result<()> {
-    #[get("/<_v>", rank = 1)] fn a(_v: UseDebug) {}
-    #[get("/<_v..>", rank = 2)] fn b(_v: UseDebug) {}
-    #[get("/<_..>", rank = 3)] fn d(_v: UseDebug) {}
-    #[post("/<_..>", data = "<_v>")] fn c(_v: UseDebug) {}
+    #[get("/<_v>", rank = 1)]
+    fn a(_v: UseDebug) {}
+    #[get("/<_v..>", rank = 2)]
+    fn b(_v: UseDebug) {}
+    #[get("/<_..>", rank = 3)]
+    fn d(_v: UseDebug) {}
+    #[post("/<_..>", data = "<_v>")]
+    fn c(_v: UseDebug) {}
 
     let mut server = spawn! {
         Rocket::default().mount("/", routes![a, b, c, d])

@@ -1,22 +1,26 @@
 use std::{str::FromStr, time::Duration};
 
 use reqwest::blocking::{ClientBuilder, RequestBuilder};
-use rocket::http::{ext::IntoOwned, uri::{Absolute, Uri}, Method};
+use rocket::http::{
+    ext::IntoOwned,
+    uri::{Absolute, Uri},
+    Method,
+};
 
-use crate::{Result, Error, Server};
+use crate::{Error, Result, Server};
 
 #[derive(Debug)]
 pub struct Client {
     client: reqwest::blocking::Client,
 }
 
-impl Client {
-    pub fn default() -> Client {
-        Client::build()
-            .try_into()
-            .expect("default builder ok")
+impl Default for Client {
+    fn default() -> Self {
+        Client::build().try_into().expect("default builder ok")
     }
+}
 
+impl Client {
     pub fn build() -> ClientBuilder {
         reqwest::blocking::Client::builder()
             .danger_accept_invalid_certs(true)
@@ -27,7 +31,8 @@ impl Client {
     }
 
     pub fn request<M>(&self, server: &Server, method: M, url: &str) -> Result<RequestBuilder>
-        where M: AsRef<str>
+    where
+        M: AsRef<str>,
     {
         let uri = match Uri::parse_any(url).map_err(|e| e.into_owned())? {
             Uri::Origin(uri) => {
@@ -70,6 +75,8 @@ impl TryFrom<ClientBuilder> for Client {
     type Error = Error;
 
     fn try_from(builder: ClientBuilder) -> Result<Self, Self::Error> {
-        Ok(Client { client: builder.build()? })
+        Ok(Client {
+            client: builder.build()?,
+        })
     }
 }

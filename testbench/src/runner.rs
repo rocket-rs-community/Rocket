@@ -30,34 +30,39 @@ pub fn run() -> std::process::ExitCode {
 
     let total_tests = inventory::iter::<Test>.into_iter().count();
     println!("running {}/{total_tests} tests", filtered.clone().count());
-    let handles = filtered.map(|test| (test, std::thread::spawn(|| {
-        let name = test.name;
-        let start = std::time::SystemTime::now();
-        let mut proc = procspawn::spawn((), test.run);
-        let result = loop {
-            match proc.join_timeout(Duration::from_secs(10)) {
-                Err(e) if e.is_timeout() => {
-                    let elapsed = start.elapsed().unwrap().as_secs();
-                    println!("{name} has been running for {elapsed} seconds...");
+    let handles = filtered.map(|test| {
+        (
+            test,
+            std::thread::spawn(|| {
+                let name = test.name;
+                let start = std::time::SystemTime::now();
+                let mut proc = procspawn::spawn((), test.run);
+                let result = loop {
+                    match proc.join_timeout(Duration::from_secs(10)) {
+                        Err(e) if e.is_timeout() => {
+                            let elapsed = start.elapsed().unwrap().as_secs();
+                            println!("{name} has been running for {elapsed} seconds...");
 
-                    if elapsed >= 30 {
-                        println!("{name} timeout");
-                        break Err(e);
+                            if elapsed >= 30 {
+                                println!("{name} timeout");
+                                break Err(e);
+                            }
+                        }
+                        result => break result,
                     }
-                },
-                result => break result,
-            }
-        };
+                };
 
-        match result.as_ref().map_err(|e| e.panic_info()) {
-            Ok(Ok(_)) => println!("test {name} ... {}", "ok".green()),
-            Ok(Err(e)) => println!("test {name} ... {}\n  {e}", "fail".red()),
-            Err(Some(_)) => println!("test {name} ... {}", "panic".red().underline()),
-            Err(None) => println!("test {name} ... {}", "error".magenta()),
-        }
+                match result.as_ref().map_err(|e| e.panic_info()) {
+                    Ok(Ok(_)) => println!("test {name} ... {}", "ok".green()),
+                    Ok(Err(e)) => println!("test {name} ... {}\n  {e}", "fail".red()),
+                    Err(Some(_)) => println!("test {name} ... {}", "panic".red().underline()),
+                    Err(None) => println!("test {name} ... {}", "error".magenta()),
+                }
 
-        matches!(result, Ok(Ok(())))
-    })));
+                matches!(result, Ok(Ok(())))
+            }),
+        )
+    });
 
     let mut success = true;
     for (_, handle) in handles {

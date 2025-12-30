@@ -1,4 +1,4 @@
-use rocket::{tokio::net::TcpListener};
+use rocket::tokio::net::TcpListener;
 
 use crate::prelude::*;
 

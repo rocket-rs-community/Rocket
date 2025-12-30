@@ -2,10 +2,10 @@ use crate::prelude::*;
 
 use std::net::{Ipv4Addr, SocketAddr};
 
-use rocket::tokio::net::TcpListener;
-use rocket::{get, routes, Rocket};
 use rocket::listener::Endpoint;
 use rocket::tls::TlsListener;
+use rocket::tokio::net::TcpListener;
+use rocket::{get, routes, Rocket};
 
 use reqwest::tls::TlsInfo;
 
@@ -44,7 +44,8 @@ fn test_tls_works() -> Result<()> {
                 TlsListener::from(listener, config?).await
             })
         })
-    }).unwrap();
+    })
+    .unwrap();
 
     let client = Client::default();
     let response = client.get(&server, "/")?.send()?;

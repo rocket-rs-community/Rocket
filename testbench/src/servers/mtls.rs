@@ -30,10 +30,12 @@ fn test_mtls(mandatory: bool) -> Result<()> {
 
     let response = client.get(&server, "/")?.send()?.text()?;
     let (_key_hash, subject) = response.split_once(":2").unwrap();
-    assert_eq!(subject,
+    assert_eq!(
+        subject,
         "[C=US, ST=CA, O=Rocket CA, CN=Rocket Root CA] \
             C=US, ST=California, L=Silicon Valley, O=Rocket, \
-            CN=Rocket TLS Example, Email=example@rocket.local");
+            CN=Rocket TLS Example, Email=example@rocket.local"
+    );
 
     let client = Client::default();
     let response = client.get(&server, "/")?.send();
