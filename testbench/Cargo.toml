@@ -28,3 +28,6 @@ features = ["secrets", "tls", "mtls"]
 version = "0.12.3"
 default-features = false
 features = ["rustls-tls-manual-roots", "charset", "cookies", "blocking", "http2"]
+
+[lints.clippy]
+result_large_err = "allow"

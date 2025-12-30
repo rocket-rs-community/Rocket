@@ -2,13 +2,13 @@
 mod client;
 mod server;
 
-pub use server::*;
 pub use client::*;
+pub use server::*;
 
-use std::io;
-use thiserror::Error;
 use procspawn::SpawnError;
 use rocket::http::uri;
+use std::io;
+use thiserror::Error;
 
 pub type Result<T, E = Error> = std::result::Result<T, E>;
 

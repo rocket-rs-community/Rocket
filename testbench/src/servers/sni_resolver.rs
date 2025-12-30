@@ -1,10 +1,11 @@
-use std::sync::Arc;
 use std::collections::HashMap;
-use std::sync::atomic::{Ordering, AtomicUsize};
+use std::sync::atomic::{AtomicUsize, Ordering};
+use std::sync::Arc;
 
-use rocket::http::uri::Host;
-use rocket::tls::{Resolver, TlsConfig, ClientHello, ServerConfig};
 use reqwest::tls::TlsInfo;
+use rocket::http::Header;
+use rocket::http::uri::Host;
+use rocket::tls::{ClientHello, Resolver, ServerConfig, TlsConfig};
 
 use crate::prelude::*;
 
@@ -24,7 +25,7 @@ static SNI_TLS_CONFIG: &str = r#"
 
 struct SniResolver {
     default: Arc<ServerConfig>,
-    map: HashMap<Host<'static>, Arc<ServerConfig>>
+    map: HashMap<Host<'static>, Arc<ServerConfig>>,
 }
 
 #[rocket::async_trait]
@@ -62,6 +63,10 @@ fn sni_resolver() -> Result<()> {
             .reconfigure_with_toml(SNI_TLS_CONFIG)
             .mount("/", routes![index])
             .attach(SniResolver::fairing())
+            .attach(AdHoc::on_response("SNI to header", |request, response| Box::pin(async move {
+                response.set_header(Header::new("sni", request.sni().unwrap_or_default()));
+            })))
+
     }?;
 
     let client: Client = Client::build()
@@ -71,16 +76,19 @@ fn sni_resolver() -> Result<()> {
         .try_into()?;
 
     let response = client.get(&server, "https://unknown.dev")?.send()?;
+    assert_eq!(response.headers().get("sni").unwrap(), "unknown.dev");
     let tls = response.extensions().get::<TlsInfo>().unwrap();
     let expected = cert("{ROCKET}/examples/tls/private/rsa_sha256_cert.pem")?;
     assert_eq!(tls.peer_certificate().unwrap(), expected);
 
     let response = client.get(&server, "https://sni1.dev")?.send()?;
+    assert_eq!(response.headers().get("sni").unwrap(), "sni1.dev");
     let tls = response.extensions().get::<TlsInfo>().unwrap();
     let expected = cert("{ROCKET}/examples/tls/private/ecdsa_nistp256_sha256_cert.pem")?;
     assert_eq!(tls.peer_certificate().unwrap(), expected);
 
     let response = client.get(&server, "https://sni2.dev")?.send()?;
+    assert_eq!(response.headers().get("sni").unwrap(), "sni2.dev");
     let tls = response.extensions().get::<TlsInfo>().unwrap();
     let expected = cert("{ROCKET}/examples/tls/private/ed25519_cert.pem")?;
     assert_eq!(tls.peer_certificate().unwrap(), expected);

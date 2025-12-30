@@ -1,7 +1,7 @@
 use crate::prelude::*;
 
-use std::sync::Arc;
 use std::sync::atomic::{AtomicUsize, Ordering};
+use std::sync::Arc;
 
 use rocket::tls::{ClientHello, Resolver, ServerConfig, TlsConfig};
 
