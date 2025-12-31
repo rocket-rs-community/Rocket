@@ -19,7 +19,8 @@ First, enable the feature corresponding to your database type:
 
 ```toml
 [dependencies.rocket_sync_db_pools]
-version = "0.1.0"
+package = "rocket_sync_db_pools-community"
+version = "0.3.0"
 features = ["diesel_sqlite_pool"]
 ```
 

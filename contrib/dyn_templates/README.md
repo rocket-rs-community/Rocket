@@ -22,7 +22,8 @@ and automatically reloads templates when compiled in debug mode. It supports [Ha
 
      ```toml
      [dependencies.rocket_dyn_templates]
-     version = "0.1.0"
+     package = "rocket_dyn_templates-community"
+     version = "0.3.0"
      features = ["handlebars", "tera", "minijinja"]
      ```
 
