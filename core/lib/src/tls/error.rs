@@ -5,7 +5,6 @@ pub enum KeyError {
     BadKeyCount(usize),
     Io(std::io::Error),
     Unsupported(rustls::Error),
-    BadItem(rustls_pemfile::Item),
 }
 
 #[derive(Debug)]
@@ -46,7 +45,6 @@ impl std::fmt::Display for KeyError {
             BadKeyCount(0) => write!(f, "no valid keys found. is the file malformed?"),
             BadKeyCount(n) => write!(f, "expected exactly 1 key, found {n}"),
             Unsupported(e) => write!(f, "key is valid but is unsupported: {e}"),
-            BadItem(i) => write!(f, "found unexpected item in key file: {i:#?}"),
         }
     }
 }
