@@ -1,6 +1,6 @@
 [package]
 name = "rocket_dyn_templates-community"
-version = "0.1.0"
+version = "0.3.0"
 authors = ["Sergio Benitez <sb@sergio.bz>"]
 description = "Dynamic templating engine integration for Rocket. (Community Fork)"
 documentation = "https://api.rocket.rs/master/rocket_dyn_templates/"
@@ -10,7 +10,7 @@ readme = "README.md"
 keywords = ["rocket", "framework", "templates", "templating", "engine"]
 license = "MIT OR Apache-2.0"
 edition = "2021"
-rust-version = "1.70"
+rust-version = "1.82"
 
 [lints]
 workspace = true
@@ -37,7 +37,7 @@ features = ["loader", "speedups", "json", "urlencode"]
 
 [dependencies.rocket]
 package = "rocket-community"
-version = "0.6.0-rc1"
+version = "0.6.0-rc2"
 path = "../../core/lib"
 default-features = false
 
