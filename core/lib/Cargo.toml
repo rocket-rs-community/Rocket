@@ -30,7 +30,7 @@ secrets = ["cookie/private", "cookie/key-expansion"]
 json = ["serde_json"]
 msgpack = ["rmp-serde"]
 uuid = ["uuid_", "rocket_http/uuid"]
-tls = ["rustls", "tokio-rustls", "rustls-pemfile"]
+tls = ["rustls", "tokio-rustls", "rustls-pki-types"]
 mtls = ["tls", "x509-parser"]
 tokio-macros = ["tokio/macros"]
 trace = ["tracing-subscriber", "tinyvec", "thread_local", "rustls?/logging", "tokio-rustls?/logging", "multer/log", "s2n-quic-h3?/tracing"]
@@ -118,8 +118,8 @@ default-features = false
 features = ["tls12", "ring"]
 optional = true
 
-[dependencies.rustls-pemfile]
-version = "2.1.0"
+[dependencies.rustls-pki-types]
+version = "1.13"
 optional = true
 
 [dependencies.s2n-quic]

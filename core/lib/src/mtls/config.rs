@@ -1,6 +1,7 @@
 use std::io;
 
 use figment::value::magic::{Either, RelativePathBuf};
+use rustls_pki_types::{pem::PemObject, CertificateDer};
 use serde::{Deserialize, Serialize};
 
 use crate::tls::{Error, Result};
@@ -172,8 +173,10 @@ impl MtlsConfig {
     /// Load and decode CA certificates from `reader`.
     pub(crate) fn load_ca_certs(&self) -> Result<rustls::RootCertStore> {
         let mut roots = rustls::RootCertStore::empty();
-        for cert in rustls_pemfile::certs(&mut self.ca_certs_reader()?) {
-            roots.add(cert?).map_err(Error::CertAuth)?;
+        for cert in CertificateDer::pem_reader_iter(&mut self.ca_certs_reader()?) {
+            roots
+                .add(cert.map_err(std::io::Error::other)?)
+                .map_err(Error::CertAuth)?;
         }
 
         Ok(roots)
