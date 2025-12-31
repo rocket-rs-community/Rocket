@@ -20,6 +20,10 @@ mod minijinja;
 #[cfg(feature = "minijinja")]
 use ::minijinja::Environment;
 
+#[cfg_attr(
+    not(any(feature = "tera", feature = "handlebars", feature = "minijinja")),
+    allow(dead_code)
+)]
 pub(crate) trait Engine: Send + Sync + Sized + 'static {
     const EXT: &'static str;
 
@@ -64,6 +68,7 @@ pub(crate) trait Engine: Send + Sync + Sized + 'static {
 ///
 /// [`tera::Value`]: crate::tera::Value
 /// [`tera::Result`]: crate::tera::Result
+///
 pub struct Engines {
     /// A `Tera` templating engine.
     ///
@@ -92,6 +97,10 @@ pub struct Engines {
     pub minijinja: Environment<'static>,
 }
 
+#[cfg_attr(
+    not(any(feature = "tera", feature = "handlebars", feature = "minijinja")),
+    allow(dead_code)
+)]
 impl Engines {
     pub(crate) const ENABLED_EXTENSIONS: &'static [&'static str] = &[
         #[cfg(feature = "tera")]
@@ -123,6 +132,10 @@ impl Engines {
         })
     }
 
+    #[cfg_attr(
+        not(any(feature = "tera", feature = "handlebars", feature = "minijinja")),
+        allow(unused_variables)
+    )]
     pub(crate) fn render<C: Serialize>(
         &self,
         name: &str,

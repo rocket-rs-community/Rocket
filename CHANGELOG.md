@@ -81,7 +81,6 @@ This release contains the following crate updates:
 [Issue 2976]: https://github.com/rwf2/Rocket/issues/
 [Commit 5617563]: https://github.com/rocket-rs-community/Rocket/commit/56175633e66ec474c8fa4857d2672a4fdb98a7a8
 
-
 # Version 0.5.1 (May 22, 2024)
 
 This release contains the following crate updates:
