@@ -1,6 +1,6 @@
 [package]
 name = "rocket_ws-community"
-version = "0.1.0"
+version = "0.1.2"
 authors = ["Sergio Benitez <sb@sergio.bz>"]
 description = "WebSocket support for Rocket. (Community Fork)"
 documentation = "https://api.rocket.rs/master/rocket_ws/"
@@ -10,7 +10,7 @@ readme = "README.md"
 keywords = ["rocket", "web", "framework", "websocket"]
 license = "MIT OR Apache-2.0"
 edition = "2021"
-rust-version = "1.75"
+rust-version = "1.82"
 
 [lints]
 workspace = true
@@ -24,7 +24,7 @@ tokio-tungstenite = { version = "0.24", optional = true }
 
 [dependencies.rocket]
 package = "rocket-community"
-version = "0.6.0-rc1"
+version = "0.6.0-rc2"
 path = "../../core/lib"
 default-features = false
 
