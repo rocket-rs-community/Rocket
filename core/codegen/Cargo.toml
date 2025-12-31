@@ -1,6 +1,6 @@
 [package]
 name = "rocket_codegen-community"
-version = "0.6.0-rc2"
+version = "0.6.0-rc3"
 authors = ["Sergio Benitez <sb@sergio.bz>"]
 description = "Procedural macros for the Rocket web framework (Community Fork)."
 documentation = "https://docs.rs/rocket-community/latest/rocket_codegen_community/"
