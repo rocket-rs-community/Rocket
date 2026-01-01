@@ -1,11 +1,11 @@
 # `dyn_templates` [![ci.svg]][ci] [![crates.io]][crate] [![docs.svg]][crate docs]
 
-[crates.io]: https://img.shields.io/crates/v/rocket_dyn_templates.svg
-[crate]: https://crates.io/crates/rocket_dyn_templates
+[crates.io]: https://img.shields.io/crates/v/rocket_dyn_templates-community.svg
+[crate]: https://crates.io/crates/rocket_dyn_templates-community
 [docs.svg]: https://img.shields.io/badge/web-master-red.svg?style=flat&label=docs&colorB=d33847
-[crate docs]: https://api.rocket.rs/master/rocket_dyn_templates
-[ci.svg]: https://github.com/rwf2/Rocket/workflows/CI/badge.svg
-[ci]: https://github.com/rwf2/Rocket/actions
+[crate docs]: https://docs.rs/rocket_dyn_templates-community/latest/rocket_dyn_templates_community/
+[ci.svg]: https://github.com/rocket-ws-community/Rocket/workflows/CI/badge.svg
+[ci]: https://github.com/rocket-ws-community/Rocket/actions
 
 This crate adds support for dynamic template rendering to Rocket. It
 automatically discovers templates, provides a `Responder` to render templates,
