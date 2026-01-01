@@ -1,11 +1,11 @@
 # `db_pools` [![ci.svg]][ci] [![crates.io]][crate] [![docs.svg]][crate docs]
 
-[crates.io]: https://img.shields.io/crates/v/rocket_db_pools.svg
-[crate]: https://crates.io/crates/rocket_db_pools
+[crates.io]: https://img.shields.io/crates/v/rocket_db_pools-community.svg
+[crate]: https://crates.io/crates/rocket_db_pools-community
 [docs.svg]: https://img.shields.io/badge/web-master-red.svg?style=flat&label=docs&colorB=d33847
-[crate docs]: https://api.rocket.rs/master/rocket_db_pools
-[ci.svg]: https://github.com/rwf2/Rocket/workflows/CI/badge.svg
-[ci]: https://github.com/rwf2/Rocket/actions
+[crate docs]: https://docs.rs/rocket_db_pools-community/latest/rocket_db_pools_community/
+[ci.svg]: https://github.com/rocket-rs-community/Rocket/workflows/CI/badge.svg
+[ci]: https://github.com/rokcet-rs-community/Rocket/actions
 
 Asynchronous database driver integration for Rocket. See the [crate docs] for
 full usage details.
@@ -61,8 +61,8 @@ full usage details.
    }
    ```
 
-[database driver features]: https://api.rocket.rs/master/rocket_db_pools/index.html#supported-drivers
-[`Pool`]: https://api.rocket.rs/master/rocket_db_pools/index.html#supported-drivers
-[Configure]: https://api.rocket.rs/master/rocket_db_pools/index.html#configuration
-[Derive `Database`]: https://api.rocket.rs/master/rocket_db_pools/derive.Database.html
-[`Connection<Type>`]: https://api.rocket.rs/master/rocket_db_pools/struct.Connection.html
+[database driver features]: https://docs.rs/rocket_db_pools-community/latest/rocket_db_pools_community/index.html#supported-drivers
+[`Pool`]: https://docs.rs/rocket_db_pools-community/latest/rocket_db_pools_community/index.html#supported-drivers
+[Configure]: https://docs.rs/rocket_db_pools-community/latest/rocket_db_pools_community/index.html#configuration
+[Derive `Database`]: https://docs.rs/rocket_db_pools-community/latest/rocket_db_pools_community/derive.Database.html
+[`Connection<Type>`]: https://docs.rs/rocket_db_pools-community/latest/rocket_db_pools_community/struct.Connection.html

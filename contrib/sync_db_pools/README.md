@@ -1,11 +1,11 @@
 # `sync_db_pools` [![ci.svg]][ci] [![crates.io]][crate] [![docs.svg]][crate docs]
 
-[crates.io]: https://img.shields.io/crates/v/rocket_sync_db_pools.svg
-[crate]: https://crates.io/crates/rocket_sync_db_pools
+[crates.io]: https://img.shields.io/crates/v/rocket_sync_db_pools-community.svg
+[crate]: https://crates.io/crates/rocket_sync_db_pools-community
 [docs.svg]: https://img.shields.io/badge/web-master-red.svg?style=flat&label=docs&colorB=d33847
-[crate docs]: https://api.rocket.rs/master/rocket_sync_db_pools
-[ci.svg]: https://github.com/rwf2/Rocket/workflows/CI/badge.svg
-[ci]: https://github.com/rwf2/Rocket/actions
+[crate docs]: https://docs.rs/rocket_sync_db_pools-community/latest/rocket_sync_db_pools_community/
+[ci.svg]: https://github.com/rokcet-rs-community/Rocket/workflows/CI/badge.svg
+[ci]: https://github.com/rocket-rs-community/Rocket/actions
 
 This crate provides traits, utilities, and a procedural macro for configuring
 and accessing database connection pools in Rocket. This implementation is backed
