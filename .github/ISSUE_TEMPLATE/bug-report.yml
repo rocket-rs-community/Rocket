@@ -50,7 +50,7 @@ body:
       description: >
         Provide a Rocket application that elicits the bug. Ideally the program
         contains a `#[test]` case using Rocket's
-        [`local`](https://api.rocket.rs/v0.5/rocket/local/index.html) testing
+        [`local`](https://docs.rs/rocket-community/latest/rocket_community/local/index.html) testing
         module.
       placeholder: >
         #[macro_use] extern crate rocket;

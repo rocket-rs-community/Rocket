@@ -12,13 +12,13 @@
 > To switch to the community edition change your dependency import from:
 >
 > ```toml
-> rocket = "0.6.0-rc2"
+> rocket = "0.6.0-xxx"
 > ```
 >
 > to:
 >
 > ```toml
-> rocket = { package = "rocket-community", version = "0.6.0-rc2" }
+> rocket = { package = "rocket-community", version = "0.6.0-rc3" }
 > ```
 
 Rocket is an async web framework for Rust with a focus on usability, security,

@@ -24,7 +24,7 @@ tokio-tungstenite = { version = "0.24", optional = true }
 
 [dependencies.rocket]
 package = "rocket-community"
-version = "0.6.0-rc2"
+version = "0.6.0-rc3"
 path = "../../core/lib"
 default-features = false
 

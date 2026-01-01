@@ -47,7 +47,8 @@ Now, add Rocket as a dependency in your `Cargo.toml`:
 
 ```toml
 [dependencies]
-rocket = "0.6.0-dev"
+package = "rocket-community"
+rocket = "0.6.0-rc3"
 ```
 
 ! warning: Development versions must be _git_ dependencies.
@@ -57,7 +58,7 @@ rocket = "0.6.0-dev"
   git repository. For example, with `######` replaced with a git commit hash:
 
   ```toml
-  rocket = { git = "https://github.com/rwf2/Rocket", rev = "######" }
+  rocket = { package = "rocket-community", git = "https://github.com/rocket-rs-communtiy/Rocket", rev = "######" }
   ```
 
 Modify `src/main.rs` so that it contains the code for the Rocket `Hello, world!`

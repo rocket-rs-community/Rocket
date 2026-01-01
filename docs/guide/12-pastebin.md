@@ -56,7 +56,7 @@ Then add the usual Rocket dependencies to the `Cargo.toml` file:
 
 ```toml
 [dependencies]
-rocket = "0.6.0-dev"
+rocket = { package = "rocket-community", version = "0.6.0-rc3" }
 ```
 
 And finally, create a skeleton Rocket application to work off of in
