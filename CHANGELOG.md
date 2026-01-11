@@ -3,9 +3,9 @@
 This release contains the following crate updates:
 
   - `rocket` `0.6.0`
-  - `rocket_db_pools` `0.3.0`
-  - `rocket_dyn_templates` `0.3.0`
-  - `rocket_ws` `0.1.2`
+  - `rocket_db_pools` `0.3.1`
+  - `rocket_dyn_templates` `0.3.1`
+  - `rocket_ws` `0.1.3`
 
 > [!IMPORTANT]
 >
