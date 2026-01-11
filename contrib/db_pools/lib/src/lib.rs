@@ -145,10 +145,11 @@
 //!
 //! ## `diesel` (v2)
 //!
-//! | Database | Feature           | [`Pool`] Type         | [`Connection`] Deref             |
-//! |----------|-------------------|-----------------------|----------------------------------|
-//! | Postgres | `diesel_postgres` | [`diesel::PgPool`]    | [`diesel::AsyncPgConnection`]    |
-//! | MySQL    | `diesel_mysql`    | [`diesel::MysqlPool`] | [`diesel::AsyncMysqlConnection`] | //!
+//! | Database | Feature           | [`Pool`] Type          | [`Connection`] Deref                                         |
+//! |----------|-------------------|------------------------|--------------------------------------------------------------|
+//! | Postgres | `diesel_postgres` | [`diesel::PgPool`]     | [`diesel::AsyncPgConnection`]                                |
+//! | MySQL    | `diesel_mysql`    | [`diesel::MysqlPool`]  | [`diesel::AsyncMysqlConnection`]                             |
+//! | SQLite   | `diesel_sqlite`   | [`diesel::SqlitePool`] | [`diesel::SyncConnectionWrapper<diesel::SqliteConnection>>`] |
 //!
 //! See [`diesel`] for usage details.
 //!
@@ -247,7 +248,11 @@ pub use rocket;
 #[doc(inline)]
 pub use rocket::figment;
 
-#[cfg(any(feature = "diesel_postgres", feature = "diesel_mysql"))]
+#[cfg(any(
+    feature = "diesel_postgres",
+    feature = "diesel_mysql",
+    feature = "diesel_sqlite"
+))]
 pub mod diesel;
 #[cfg(feature = "deadpool_postgres")]
 pub use deadpool_postgres;
