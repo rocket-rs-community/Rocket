@@ -7,7 +7,8 @@
 //!
 //!    ```toml
 //!    [dependencies.rocket_db_pools]
-//!    version = "0.1.0"
+//!    package = "rocket_db_pools-community"
+//!    version = "0.3.0"
 //!    features = ["sqlx_sqlite"]
 //!    ```
 //!
@@ -144,10 +145,11 @@
 //!
 //! ## `diesel` (v2)
 //!
-//! | Database | Feature           | [`Pool`] Type         | [`Connection`] Deref             |
-//! |----------|-------------------|-----------------------|----------------------------------|
-//! | Postgres | `diesel_postgres` | [`diesel::PgPool`]    | [`diesel::AsyncPgConnection`]    |
-//! | MySQL    | `diesel_mysql`    | [`diesel::MysqlPool`] | [`diesel::AsyncMysqlConnection`] | //!
+//! | Database | Feature           | [`Pool`] Type          | [`Connection`] Deref                                         |
+//! |----------|-------------------|------------------------|--------------------------------------------------------------|
+//! | Postgres | `diesel_postgres` | [`diesel::PgPool`]     | [`diesel::AsyncPgConnection`]                                |
+//! | MySQL    | `diesel_mysql`    | [`diesel::MysqlPool`]  | [`diesel::AsyncMysqlConnection`]                             |
+//! | SQLite   | `diesel_sqlite`   | [`diesel::SqlitePool`] | [`diesel::SyncConnectionWrapper<diesel::SqliteConnection>>`] |
 //!
 //! See [`diesel`] for usage details.
 //!
@@ -168,7 +170,8 @@
 //! features = ["macros", "migrate"]
 //!
 //! [dependencies.rocket_db_pools]
-//! version = "0.1.0"
+//! package = "rocket_db_pools-community"
+//! version = "0.3.1"
 //! features = ["sqlx_sqlite"]
 //! ```
 //!
@@ -245,7 +248,11 @@ pub use rocket;
 #[doc(inline)]
 pub use rocket::figment;
 
-#[cfg(any(feature = "diesel_postgres", feature = "diesel_mysql"))]
+#[cfg(any(
+    feature = "diesel_postgres",
+    feature = "diesel_mysql",
+    feature = "diesel_sqlite"
+))]
 pub mod diesel;
 #[cfg(feature = "deadpool_postgres")]
 pub use deadpool_postgres;

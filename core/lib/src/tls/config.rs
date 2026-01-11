@@ -7,6 +7,7 @@ use indexmap::IndexSet;
 use rustls::crypto::{ring, CryptoProvider};
 use rustls::pki_types::{CertificateDer, PrivateKeyDer};
 use rustls::server::{ServerConfig, ServerSessionMemoryCache, WebPkiClientVerifier};
+use rustls_pki_types::pem::PemObject;
 use serde::{Deserialize, Serialize};
 
 use crate::tls::error::{Error, KeyError, Result};
@@ -524,25 +525,16 @@ impl TlsConfig {
 /// Loads certificates from `reader`.
 impl TlsConfig {
     pub(crate) fn load_certs(&self) -> Result<Vec<CertificateDer<'static>>> {
-        rustls_pemfile::certs(&mut self.certs_reader()?)
+        CertificateDer::pem_reader_iter(&mut self.certs_reader()?)
             .collect::<Result<_, _>>()
-            .map_err(Error::CertChain)
+            .map_err(|e| Error::CertChain(std::io::Error::other(e)))
     }
 
-    /// Load and decode the private key  from `reader`.
+    /// Load and decode the private key from `reader`.
     pub(crate) fn load_key(&self) -> Result<PrivateKeyDer<'static>> {
-        use rustls_pemfile::Item::*;
-
-        let mut keys = rustls_pemfile::read_all(&mut self.key_reader()?)
-            .map(|result| {
-                result.map_err(KeyError::Io).and_then(|item| match item {
-                    Pkcs1Key(key) => Ok(key.into()),
-                    Pkcs8Key(key) => Ok(key.into()),
-                    Sec1Key(key) => Ok(key.into()),
-                    _ => Err(KeyError::BadItem(item)),
-                })
-            })
-            .collect::<Result<Vec<PrivateKeyDer<'static>>, _>>()?;
+        let mut keys = PrivateKeyDer::pem_reader_iter(&mut self.key_reader()?)
+            .collect::<Result<Vec<PrivateKeyDer<'static>>, _>>()
+            .map_err(|e| KeyError::Io(std::io::Error::other(e)))?;
 
         if keys.len() != 1 {
             return Err(KeyError::BadKeyCount(keys.len()).into());

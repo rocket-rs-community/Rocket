@@ -1,6 +1,6 @@
 [package]
 name = "rocket-community"
-version = "0.6.0-rc2"
+version = "0.6.0-rc3"
 authors = ["Sergio Benitez <sb@sergio.bz>"]
 description = """
 Web framework with a focus on usability, security, extensibility, and speed. (Community Fork)
@@ -30,7 +30,7 @@ secrets = ["cookie/private", "cookie/key-expansion"]
 json = ["serde_json"]
 msgpack = ["rmp-serde"]
 uuid = ["uuid_", "rocket_http/uuid"]
-tls = ["rustls", "tokio-rustls", "rustls-pemfile"]
+tls = ["rustls", "tokio-rustls", "rustls-pki-types"]
 mtls = ["tls", "x509-parser"]
 tokio-macros = ["tokio/macros"]
 trace = ["tracing-subscriber", "tinyvec", "thread_local", "rustls?/logging", "tokio-rustls?/logging", "multer/log", "s2n-quic-h3?/tracing"]
@@ -88,12 +88,12 @@ features = ["fmt", "tracing-log", "parking_lot"]
 
 [dependencies.rocket_codegen]
 package = "rocket_codegen-community"
-version = "0.6.0-rc1"
+version = "0.6.0-rc3"
 path = "../codegen"
 
 [dependencies.rocket_http]
 package = "rocket_http-community"
-version = "0.6.0-rc1"
+version = "0.6.0-rc3"
 path = "../http"
 features = ["serde"]
 
@@ -118,8 +118,8 @@ default-features = false
 features = ["tls12", "ring"]
 optional = true
 
-[dependencies.rustls-pemfile]
-version = "2.1.0"
+[dependencies.rustls-pki-types]
+version = "1.13"
 optional = true
 
 [dependencies.s2n-quic]

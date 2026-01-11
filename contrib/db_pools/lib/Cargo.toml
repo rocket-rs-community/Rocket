@@ -1,6 +1,6 @@
 [package]
 name = "rocket_db_pools-community"
-version = "0.3.0"
+version = "0.3.1"
 authors = ["Sergio Benitez <sb@sergio.bz>", "Jeb Rosen <jeb@jebrosen.com>"]
 description = "Rocket async database pooling support. (Community Fork)"
 repository = "https://github.com/rwf2/Rocket/tree/master/contrib/db_pools"
@@ -20,26 +20,29 @@ workspace = true
 # deadpool features
 deadpool_postgres = ["deadpool-postgres", "deadpool"]
 deadpool_redis = ["deadpool-redis", "deadpool"]
+
 # sqlx features
 sqlx_mysql = ["sqlx", "sqlx/mysql", "log"]
 sqlx_postgres = ["sqlx", "sqlx/postgres", "log"]
 sqlx_sqlite = ["sqlx", "sqlx/sqlite", "log"]
 sqlx_macros = ["sqlx/macros"]
+
 # diesel features
 diesel_postgres = ["diesel-async/postgres", "diesel-async/deadpool", "deadpool", "diesel"]
 diesel_mysql = ["diesel-async/mysql", "diesel-async/deadpool", "deadpool", "diesel"]
+diesel_sqlite = ["diesel-async/sqlite", "diesel-async/deadpool", "deadpool", "diesel"]
 # implicit features: mongodb
 
 [dependencies.rocket]
 package = "rocket-community"
 path = "../../../core/lib"
-version = "0.6.0-rc2"
+version = "0.6.0-rc3"
 default-features = false
 
 [dependencies.rocket_db_pools_codegen]
 package = "rocket_db_pools_codegen-community"
 path = "../codegen"
-version = "0.3.0"
+version = "0.3.1"
 
 [dependencies.deadpool]
 version = "0.12.1"

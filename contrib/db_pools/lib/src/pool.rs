@@ -203,6 +203,17 @@ mod deadpool_postgres {
         }
     }
 
+    #[cfg(feature = "diesel_sqlite")]
+    impl DeadManager
+        for AsyncDieselConnectionManager<
+            diesel_async::sync_connection_wrapper::SyncConnectionWrapper<diesel::SqliteConnection>,
+        >
+    {
+        fn new(config: &Config) -> Result<Self, Self::Error> {
+            Ok(Self::new(config.url.as_str()))
+        }
+    }
+
     #[rocket::async_trait]
     impl<M: DeadManager, C: From<Object<M>>> crate::Pool for Pool<M, C>
     where
