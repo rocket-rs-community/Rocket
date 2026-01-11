@@ -13,7 +13,7 @@
 //!      ```toml
 //!      [dependencies.rocket_dyn_templates]
 //!      package = "rocket_dyn_templates-community"
-//!      version = "0.3.0"
+//!      version = "0.3.1"
 //!      features = ["handlebars", "tera", "minijinja"]
 //!      ```
 //!

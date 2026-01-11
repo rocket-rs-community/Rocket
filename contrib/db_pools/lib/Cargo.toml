@@ -1,6 +1,6 @@
 [package]
 name = "rocket_db_pools-community"
-version = "0.3.0"
+version = "0.3.1"
 authors = ["Sergio Benitez <sb@sergio.bz>", "Jeb Rosen <jeb@jebrosen.com>"]
 description = "Rocket async database pooling support. (Community Fork)"
 repository = "https://github.com/rwf2/Rocket/tree/master/contrib/db_pools"
@@ -42,7 +42,7 @@ default-features = false
 [dependencies.rocket_db_pools_codegen]
 package = "rocket_db_pools_codegen-community"
 path = "../codegen"
-version = "0.3.0"
+version = "0.3.1"
 
 [dependencies.deadpool]
 version = "0.12.1"
