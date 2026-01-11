@@ -43,6 +43,7 @@ This release contains the following crate updates:
 ## [`rocket_db_pools-community`](https://docs.rs/rocket_db_pools-community/latest/rocket_db_pools_community/) `0.3.0`
 
   * Defer sqlx pool connect errors on startup. [Commit 1435f65]
+  * Adds diesel_sqlite feature [Commit TBD]
 
 
 ## [`rocket_sync_db_pools-community`](https://docs.rs/rocket_sync_db_pools-community/latest/rocket_sync_db_pools_community/) `0.3.0`
