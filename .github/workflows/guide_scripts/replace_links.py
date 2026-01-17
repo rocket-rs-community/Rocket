@@ -19,7 +19,14 @@ REPLACEMENTS = {
     "@api/master/rocket": "https://docs.rs/rocket-community/latest/rocket_community",
     "(faq/)": "(./14-faq.md)",
     "@github": "https://github.com/rocket-rs-community/Rocket",
-    "@git": "https://github.com/rocket-rs-community/Rocket/tree/master"
+    "@git": "https://github.com/rocket-rs-community/Rocket/tree/master",
+    "@figment": "https://docs.rs/figment/latest/figment/",
+    "@rustls": "https://docs.rs/rustls/latest/rustls/",
+    "```rust,ignore": "```rust",
+    "```toml,ignore": "```toml",
+    "================================================================================": "",
+    "@std": "https://docs.rs/rustc-std-workspace-std/latest/std",
+    "@tokio": "https://docs.rs/tokio/latest/tokio/"
     # Add more simple replacements here:
     # "old_string": "new_string",
 }
