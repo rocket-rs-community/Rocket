@@ -25,7 +25,7 @@ a release.
 * ./core/lib/src/serde/uuid.rs (11)
 * ./core/lib/src/lib.rs (28, 78, 85)
 
-* ./docs/guide/03-getting-started.md (51)
+* ./docs/guide/03-getting-started.md (50)
 * ./docs/guide/05-requests.md (665, 844)
 * ./docs/guide/10-configuration.md (250, 325)
 * ./docs/guide/12-pastebin.md (59)
@@ -36,12 +36,12 @@ a release.
 ## rocket_db_pools(_codegen)_-community
 
 * ./contrib/db_pools/codegen/Cargo.toml (3)
-* ./contrib/db_pools/lib/Cargo.toml (3, 42)
+* ./contrib/db_pools/lib/Cargo.toml (3, 45)
 
 * ./contrib/db_pools/lib/src/diesel.rs (16)
-* ./contrib/db_pools/lib/src/lib.rs (11, 173)
+* ./contrib/db_pools/lib/src/lib.rs (11, 174)
 
-* ./contrib/db_pools/README.md (31)
+* ./contrib/db_pools/README.md (21)
 * ./docs/guide/07-state.md (240, 309)
 
 
@@ -49,7 +49,7 @@ a release.
 
 * ./contrib/dyn_templates/Cargo.toml (3)
 
-* ./contrib/dyn_templates/src/lib.rs (15)
+* ./contrib/dyn_templates/src/lib.rs (16)
 
 * ./contrib/dyn_templates/README.md (26)
 

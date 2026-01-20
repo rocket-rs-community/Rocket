@@ -1,6 +1,6 @@
 [package]
 name = "rocket_codegen-community"
-version = "0.6.0-rc3"
+version = "0.6.0"
 authors = ["Sergio Benitez <sb@sergio.bz>"]
 description = "Procedural macros for the Rocket web framework (Community Fork)."
 documentation = "https://docs.rs/rocket-community/latest/rocket_codegen_community/"
@@ -24,7 +24,7 @@ quote = "1.0"
 syn = { version = "2.0", features = ["full", "visit", "visit-mut", "extra-traits"] }
 proc-macro2 = "1.0.60"
 devise = "0.4"
-rocket_http = { package = "rocket_http-community", version = "0.6.0-rc3", path = "../http/" }
+rocket_http = { package = "rocket_http-community", version = "0.6.0", path = "../http/" }
 unicode-xid = "0.2"
 version_check = "0.9"
 glob = "0.3"

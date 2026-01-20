@@ -1,6 +1,6 @@
 [package]
 name = "rocket_sync_db_pools-community"
-version = "0.3.1"
+version = "0.3.2"
 authors = ["Sergio Benitez <sb@sergio.bz>"]
 description = "Rocket async database pooling support for sync database drivers."
 repository = "https://github.com/rwf2/Rocket/tree/master/contrib/sync_db_pools"
@@ -38,12 +38,12 @@ memcache = { version = "0.17.2", optional = true }
 
 [dependencies.rocket_sync_db_pools_codegen]
 package = "rocket_sync_db_pools_codegen-community"
-version = "0.3.1"
+version = "0.3.2"
 path = "../codegen"
 
 [dependencies.rocket]
 package = "rocket-community"
-version = "0.6.0-rc3"
+version = "0.6.0"
 path = "../../../core/lib"
 default-features = false
 
@@ -52,7 +52,7 @@ version_check = "0.9.1"
 
 [dev-dependencies.rocket]
 package = "rocket-community"
-version = "0.6.0-rc3"
+version = "0.6.0"
 path = "../../../core/lib"
 default-features = false
 features = ["trace"]

@@ -582,7 +582,7 @@ is to depend on a `contrib` library from git while also depending on a
 `crates.io` version of Rocket or vice-versa:
 
 ```toml
-rocket = { package = "rocket-community", version = "0.6.0-dev" }
+rocket = { package = "rocket-community", version = "0.6.0" }
 rocket_db_pools = { git = "https://github.com/rocket-rs-community/Rocket.git" }
 ```
 

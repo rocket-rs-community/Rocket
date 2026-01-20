@@ -1,11 +1,11 @@
-# Version 0.6.0 (Unpublished)
+# Version 0.6.0 (20 Jan 2026)
 
 This release contains the following crate updates:
 
   - `rocket` `0.6.0`
-  - `rocket_db_pools` `0.3.1`
-  - `rocket_dyn_templates` `0.3.1`
-  - `rocket_ws` `0.1.3`
+  - `rocket_db_pools` `0.3.2`
+  - `rocket_dyn_templates` `0.3.2`
+  - `rocket_ws` `0.1.4`
 
 > [!IMPORTANT]
 >
@@ -25,17 +25,17 @@ This release contains the following crate updates:
   * Codegen now generates deterministic names for 'uri' macros. [PR 2797]
   * Transition to `tracing` based logging. [Commit 926e06e]
   * (**breaking**) Improves 'Error' type: make 'ErrorKind' accessible. [Commit 4a00c1f]
-  * (**breaking**) Implements new FileServer API. [Doc link - TBD]
-  * Added macro to derive `FromParam` for Enum. [Doc link - TBD]
-  * Allows responses to be msgpack objects. [Doc link - TBD]
+  * (**breaking**) Implements new FileServer API. [Commit 0426953c]
+  * Added macro to derive `FromParam` for Enum.
+  * Allows responses to be msgpack objects.
   * Add support for custom HTTP methods. [Testbench http_extensions]
   * Switches to use derive equality, ordering traits for http::Status. [Issue 2844]
   * Add fairing retrieval methods to 'Rocket'. [Commit d332339]
   * Implements Impl `TryFrom<&str>` for 'Method' and `From<Infallible>` for 'ParseMethodError'. [Commit ef1cfa0]
-  * Support routes that match any method. [Doc link - TBD]
+  * Support routes that match any method.
   * Strip body and content-length on 204 and body on 304. [Issue 2821]
   * Add 'Request::version()' to retrieve HTTP version. [Commit 2d4dc1c]
-  * Expose the SNI when possible for TLS connections. [Doc link - TBD]
+  * Expose the SNI when possible for TLS connections. [Commit 71fbbb0]
   * Fixed bug which stopped rocket from working with unix sockets if the reuse setting was not set. [Issue 2976]
   * Update pastebin example to avoid use of `gen` keyword. [Commit 5617563]
 
@@ -43,7 +43,7 @@ This release contains the following crate updates:
 ## [`rocket_db_pools-community`](https://docs.rs/rocket_db_pools-community/latest/rocket_db_pools_community/) `0.3.0`
 
   * Defer sqlx pool connect errors on startup. [Commit 1435f65]
-  * Adds diesel_sqlite feature [Commit TBD]
+  * Adds diesel_sqlite feature [Commit 746e86b]
 
 
 ## [`rocket_sync_db_pools-community`](https://docs.rs/rocket_sync_db_pools-community/latest/rocket_sync_db_pools_community/) `0.3.0`
@@ -81,6 +81,10 @@ This release contains the following crate updates:
 [Commit 1435f65]: https://github.com/rocket-rs-community/Rocket/commit/1435f6574fbcbe578720b45f618c6c4b74294acd
 [Issue 2976]: https://github.com/rwf2/Rocket/issues/
 [Commit 5617563]: https://github.com/rocket-rs-community/Rocket/commit/56175633e66ec474c8fa4857d2672a4fdb98a7a8
+[Commit 746e86b]: https://github.com/rocket-rs-community/Rocket/commit/746e86bb198a86a94b6dd994c04029a9e4cf850a
+[Commit 65e3b87]: https://github.com/rocket-rs-community/Rocket/commit/65e3b87d6bee4f56da62565fba638b950426953c
+[Commit 71fbbb0]: https://github.com/rocket-rs-community/Rocket/commit/71fbbb0d0cc355905c0887772c7470cd07d21f86
+
 
 # Version 0.5.1 (May 22, 2024)
 

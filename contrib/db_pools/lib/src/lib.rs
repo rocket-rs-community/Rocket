@@ -8,7 +8,7 @@
 //!    ```toml
 //!    [dependencies.rocket_db_pools]
 //!    package = "rocket_db_pools-community"
-//!    version = "0.3.0"
+//!    version = "0.3.2"
 //!    features = ["sqlx_sqlite"]
 //!    ```
 //!
@@ -171,7 +171,7 @@
 //!
 //! [dependencies.rocket_db_pools]
 //! package = "rocket_db_pools-community"
-//! version = "0.3.1"
+//! version = "0.3.2"
 //! features = ["sqlx_sqlite"]
 //! ```
 //!

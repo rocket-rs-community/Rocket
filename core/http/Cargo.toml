@@ -1,6 +1,6 @@
 [package]
 name = "rocket_http-community"
-version = "0.6.0-rc3"
+version = "0.6.0"
 authors = ["Sergio Benitez <sb@sergio.bz>"]
 description = """
 Types, traits, and parsers for HTTP requests, responses, and headers. (Community Fork)

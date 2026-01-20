@@ -25,7 +25,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! rocket = { package = "rocket_community", version = "0.6.0-rc3" }
+//! rocket = { package = "rocket_community", version = "0.6.0" }
 //! ```
 //!
 //! (Note that this is a community fork of Rocket. The `package = "rocket_community"`
@@ -75,14 +75,14 @@
 //!
 //! ```toml
 //! [dependencies]
-//! rocket = { package = "rocket_community", version = "0.6.0-rc3", features = ["secrets", "tls", "json"] }
+//! rocket = { package = "rocket_community", version = "0.6.0", features = ["secrets", "tls", "json"] }
 //! ```
 //!
 //! Conversely, HTTP/2 can be disabled:
 //!
 //! ```toml
 //! [dependencies]
-//! rocket = { package = "rocket_community", version = "0.6.0-rc3", default-features = false }
+//! rocket = { package = "rocket_community", version = "0.6.0", default-features = false }
 //! ```
 //!
 //! [subscriber]: crate::trace::subscriber

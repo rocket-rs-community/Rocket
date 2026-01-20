@@ -1,6 +1,6 @@
 [package]
 name = "rocket_ws-community"
-version = "0.1.3"
+version = "0.1.4"
 authors = ["Sergio Benitez <sb@sergio.bz>"]
 description = "WebSocket support for Rocket. (Community Fork)"
 documentation = "https://api.rocket.rs/master/rocket_ws/"
@@ -24,7 +24,7 @@ tokio-tungstenite = { version = "0.24", optional = true }
 
 [dependencies.rocket]
 package = "rocket-community"
-version = "0.6.0-rc3"
+version = "0.6.0"
 path = "../../core/lib"
 default-features = false
 

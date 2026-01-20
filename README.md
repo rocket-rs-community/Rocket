@@ -18,7 +18,7 @@
 > to:
 >
 > ```toml
-> rocket = { package = "rocket-community", version = "0.6.0-rc3" }
+> rocket = { package = "rocket-community", version = "0.6.0" }
 > ```
 
 Rocket is an async web framework for Rust with a focus on usability, security,

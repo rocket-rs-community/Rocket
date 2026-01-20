@@ -8,12 +8,12 @@
 //!
 //! ```toml
 //! [dependencies]
-//! rocket = { package = "rocket-community", version = "0.6.0-rc3" }
+//! rocket = { package = "rocket-community", version = "0.6.0" }
 //! diesel = "2"
 //!
 //! [dependencies.rocket_db_pools]
 //! package = "rocket_db_pools-community"
-//! version = "0.3.1"
+//! version = "0.3.2"
 //! features = ["diesel_mysql"]
 //! ```
 //!
