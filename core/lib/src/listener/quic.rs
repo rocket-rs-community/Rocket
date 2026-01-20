@@ -6,7 +6,7 @@
 //! ```toml
 //! // Add the following to your Cargo.toml:
 //! [dependencies]
-//! rocket = { package = "rocket_community", version = "0.6.0-rc3", features = ["http3-preview"] }
+//! rocket = { package = "rocket_community", version = "0.6.0", features = ["http3-preview"] }
 //!
 //! // In your Rocket.toml or other equivalent config source:
 //! [default.tls]

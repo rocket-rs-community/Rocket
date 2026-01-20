@@ -1,6 +1,6 @@
 [package]
 name = "rocket_db_pools-community"
-version = "0.3.1"
+version = "0.3.2"
 authors = ["Sergio Benitez <sb@sergio.bz>", "Jeb Rosen <jeb@jebrosen.com>"]
 description = "Rocket async database pooling support. (Community Fork)"
 repository = "https://github.com/rwf2/Rocket/tree/master/contrib/db_pools"
@@ -36,13 +36,13 @@ diesel_sqlite = ["diesel-async/sqlite", "diesel-async/deadpool", "deadpool", "di
 [dependencies.rocket]
 package = "rocket-community"
 path = "../../../core/lib"
-version = "0.6.0-rc3"
+version = "0.6.0"
 default-features = false
 
 [dependencies.rocket_db_pools_codegen]
 package = "rocket_db_pools_codegen-community"
 path = "../codegen"
-version = "0.3.1"
+version = "0.3.2"
 
 [dependencies.deadpool]
 version = "0.12.1"

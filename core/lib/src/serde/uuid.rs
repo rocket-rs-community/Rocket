@@ -8,7 +8,7 @@
 //! ```toml
 //! [dependencies.rocket]
 //! package = "rocket_community"
-//! version = "0.6.0-rc3"
+//! version = "0.6.0"
 //! features = ["uuid"]
 //! ```
 //!

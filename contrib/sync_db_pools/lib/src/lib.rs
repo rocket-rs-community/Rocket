@@ -31,7 +31,7 @@
 //! ```toml
 //! [dependencies.rocket_sync_db_pools]
 //! package = "rocket_sync_db_pools-community"
-//! version = "0.3.1"
+//! version = "0.3.2"
 //! features = ["diesel_sqlite_pool"]
 //! ```
 //!

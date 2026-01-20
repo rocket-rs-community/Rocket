@@ -19,7 +19,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! rocket = { package = "rocket-community", version = "0.6.0-rc3" }
+//! rocket = { package = "rocket-community", version = "0.6.0" }
 //! ```
 //!
 //! And to import all macros, attributes, and derives via `#[macro_use]` in the

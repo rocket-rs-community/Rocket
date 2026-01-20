@@ -47,8 +47,7 @@ Now, add Rocket as a dependency in your `Cargo.toml`:
 
 ```toml
 [dependencies]
-package = "rocket-community"
-rocket = "0.6.0-rc3"
+rocket = { package = "rocket-community", version = "0.6.0" }
 ```
 
 ! warning: Development versions must be _git_ dependencies.
